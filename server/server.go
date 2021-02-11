@@ -20,7 +20,7 @@ func makeMuxRouter() http.Handler {
 func Run() error {
 	mux := makeMuxRouter()
 	srv := &http.Server{
-		Addr:           ":" + os.Getenv("Port"),
+		Addr:           "0.0.0.0:" + os.Getenv("PORT"),
 		Handler:        mux,
 		ReadTimeout:    5 * time.Second,
 		WriteTimeout:   5 * time.Second,
