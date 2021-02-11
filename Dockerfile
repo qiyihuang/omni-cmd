@@ -25,6 +25,6 @@ COPY --from=BUILD_IMAGE /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-cer
 # Copy binary
 COPY --from=BUILD_IMAGE /tmp/app/bin /app/omnibox-cmd
 
-EXPOSE 8008
+EXPOSE 80
 
 CMD ["/app/omnibox-cmd"]
