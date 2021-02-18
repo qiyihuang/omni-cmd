@@ -13,9 +13,8 @@ func handleGetSearch(w http.ResponseWriter, r *http.Request) {
 	cmdSlice := strings.Split(cmd, " ")
 
 	handler := query.Handler(cmdSlice[0])
-
 	if handler == nil {
-		query.SearchGoogle(cmd, w, r)
+		query.Search(cmd, w, r)
 		return
 	}
 

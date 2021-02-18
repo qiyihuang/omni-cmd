@@ -3,15 +3,16 @@ package query
 import (
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 )
 
 // Mapping commands with handler functions.
 var commandHandlersMap = map[string]interface{}{
-	"gh": buildGitHubURL,
-	"gm": buildGmailURL,
-	"tw": buildTwitterURL,
-	"yt": buildYouTubeURL,
+	"gh": handleGitHub,
+	"gm": handleGmail,
+	"tw": handleTwitter,
+	"yt": handleYouTube,
 }
 
 // Handler returns query handler function by command string.
@@ -19,13 +20,18 @@ func Handler(cmd string) interface{} {
 	return commandHandlersMap[cmd]
 }
 
-// SearchGoogle search the query using provided search engine.
-func SearchGoogle(query string, w http.ResponseWriter, r *http.Request) {
-	searchURL := "https://www.google.com/search?q=" + url.QueryEscape(query)
+// Search search the query using provided search engine.
+func Search(query string, w http.ResponseWriter, r *http.Request) {
+	baseURL := os.Getenv("SEARCH_ENGINE_URL")
+	if baseURL == "" {
+		baseURL = "https://www.google.com/search?q="
+	}
+
+	searchURL := baseURL + url.QueryEscape(query)
 	http.Redirect(w, r, searchURL, 301)
 }
 
-func buildGitHubURL(params []string) string {
+func handleGitHub(params []string) string {
 	baseURL := "https://www.github.com/"
 
 	if len(params) == 0 {
@@ -47,7 +53,7 @@ func buildGitHubURL(params []string) string {
 
 }
 
-func buildGmailURL(params []string) string {
+func handleGmail(params []string) string {
 	baseURL := "https://www.gmail.com/"
 
 	if len(params) == 0 {
@@ -58,7 +64,7 @@ func buildGmailURL(params []string) string {
 	return baseURL + "#search/" + url.QueryEscape(query)
 }
 
-func buildTwitterURL(params []string) string {
+func handleTwitter(params []string) string {
 	baseURL := "https://www.twitter.com/"
 
 	if len(params) == 0 {
@@ -75,7 +81,7 @@ func buildTwitterURL(params []string) string {
 	return baseURL + "search?q=" + url.QueryEscape(query)
 }
 
-func buildYouTubeURL(params []string) string {
+func handleYouTube(params []string) string {
 	baseURL := "https://www.youtube.com/"
 
 	if len(params) == 0 {
