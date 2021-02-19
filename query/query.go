@@ -91,7 +91,7 @@ func handleYouTube(params []string) string {
 	firstArg := params[0]
 	if firstArg[0:1] == "@" {
 		username := firstArg[1:]
-		return baseURL + "c/" + username
+		return baseURL + username
 	}
 
 	query := strings.Join(params, " ")
