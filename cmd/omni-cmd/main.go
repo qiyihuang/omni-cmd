@@ -8,7 +8,7 @@ import (
 	"github.com/qiyihuang/omnibox-cmd/server"
 )
 
-const version = "0.1.2"
+const version = "0.1.3"
 
 func main() {
 	if os.Getenv("ENV") != "production" && os.Getenv("ENV") != "test" {
