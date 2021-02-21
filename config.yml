@@ -1,0 +1,13 @@
+query:
+  - cmd: "gh"
+    url: "https://www.github.com/"
+    search_str: "search?q="
+  - cmd: "gm"
+    url: "https://www.gmail.com/"
+    search_str: "#search/"
+  - cmd: "tw"
+    url: "https://www.twitter.com/"
+    search_str: "search?q="
+  - cmd: "yt"
+    url: "https://www.youtube.com/"
+    search_str: "results?search_query="
