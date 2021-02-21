@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/qiyihuang/omnibox-cmd/query"
+	"github.com/qiyihuang/omni-cmd/query"
 )
 
 // HandleGetSearch handles get request to /search route.

@@ -1,4 +1,4 @@
-module github.com/qiyihuang/omnibox-cmd
+module github.com/qiyihuang/omni-cmd
 
 go 1.15
 

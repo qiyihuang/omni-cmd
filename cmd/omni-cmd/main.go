@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/qiyihuang/omnibox-cmd/server"
+	"github.com/qiyihuang/omni-cmd/server"
 )
 
 const version = "0.1.3"
