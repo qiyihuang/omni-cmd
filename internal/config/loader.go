@@ -38,7 +38,7 @@ func loadQueryConfig(cf *os.File) {
 // Load loads all the configs used to run the program.
 func Load() {
 	wd, _ := os.Getwd()
-	cf, err := os.Open(wd + "/config.yml")
+	cf, err := os.Open(wd + "../config/config.yml")
 	if err != nil {
 		log.Fatal("Cannot find config file.")
 	}
