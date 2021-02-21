@@ -1,6 +1,6 @@
 # omni-cmd
 
-A Minecraft bot
+Lightweight shortcut/bookmark tool for Chrome omnibox.
 
 ## Getting Started
 
