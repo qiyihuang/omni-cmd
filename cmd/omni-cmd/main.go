@@ -5,7 +5,8 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/qiyihuang/omnibox-cmd/server"
+	"github.com/qiyihuang/omni-cmd/internal/config"
+	"github.com/qiyihuang/omni-cmd/server"
 )
 
 const version = "0.1.3"
@@ -17,7 +18,9 @@ func main() {
 			log.Fatal(err)
 		}
 	}
-	log.Println("Omnibox Cmd server up.      Version: " + version)
 
+	config.Load()
+
+	log.Println("Omnibox Cmd server up.      Version: " + version)
 	log.Fatal(server.Run())
 }

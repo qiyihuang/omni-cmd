@@ -4,21 +4,13 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/qiyihuang/omnibox-cmd/query"
+	"github.com/qiyihuang/omni-cmd/query"
 )
 
 // HandleGetSearch handles get request to /search route.
 func handleGetSearch(w http.ResponseWriter, r *http.Request) {
-	cmd := r.URL.Query()["cmd"][0]
-	cmdSlice := strings.Split(cmd, " ")
+	qs := r.URL.Query()["cmd"][0]
+	params := strings.Split(qs, " ")
 
-	handler := query.Handler(cmdSlice[0])
-	if handler == nil {
-		query.Search(cmd, w, r)
-		return
-	}
-
-	params := cmdSlice[1:]
-	redirectURL := handler.(func([]string) string)(params)
-	http.Redirect(w, r, redirectURL, 301)
+	query.Handle(params, w, r)
 }

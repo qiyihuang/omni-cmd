@@ -35,6 +35,7 @@ docker run -d \
 --name omni-cmd \
 --restart unless-stopped \
 -p 8008:8008 \
+-v { directory you store your config.yml }:/config
 --env-file { your environment file path } \
 qiyihuang/omni-cmd:latest
 ```
