@@ -15,7 +15,9 @@ RUN go install -v ./...
 # Build the main.go
 # Cgo allows to use inline C code in Go sources, Cgo links your application dynamically to libc, even if you don't use any inline C
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o omni-cmd -ldflags="-s -w" ./cmd/omni-cmd/...
+# -ldflags to ignore debug information for smaller binary
 
+# Compress the binary
 RUN apk --update --no-cache add upx
 RUN upx ./omni-cmd
 
