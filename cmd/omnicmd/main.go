@@ -9,7 +9,7 @@ import (
 	"github.com/qiyihuang/omni-cmd/server"
 )
 
-const version = "0.2.0"
+const version = "0.2.1"
 
 func main() {
 	if os.Getenv("ENV") != "production" && os.Getenv("ENV") != "test" {
