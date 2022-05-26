@@ -6,22 +6,18 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/qiyihuang/omni-cmd/metrics"
 )
 
-func makeMuxRouter() http.Handler {
+// Start starts http server.
+func Start() error {
 	muxRouter := mux.NewRouter()
-
+	muxRouter.Use(logging)
 	muxRouter.HandleFunc("/search", handleGetSearch).Methods("GET")
 
-	return muxRouter
-}
-
-// Run starts http server.
-func Run() error {
-	mux := makeMuxRouter()
 	srv := &http.Server{
 		Addr:           "0.0.0.0:" + os.Getenv("PORT"),
-		Handler:        mux,
+		Handler:        muxRouter,
 		ReadTimeout:    5 * time.Second,
 		WriteTimeout:   5 * time.Second,
 		MaxHeaderBytes: 1 << 20,
@@ -31,4 +27,12 @@ func Run() error {
 		return err
 	}
 	return nil
+}
+
+func logging(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		t := metrics.StartTimer("request")
+		next.ServeHTTP(w, r)
+		t.End()
+	})
 }
