@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/qiyihuang/omni-cmd/internal/config"
+	"github.com/qiyihuang/omni-cmd/config"
 	"github.com/qiyihuang/omni-cmd/server"
 )
 
-const version = "0.2.1"
+const version = "0.2.2"
 
 func main() {
 	if os.Getenv("ENV") != "production" && os.Getenv("ENV") != "test" {
@@ -21,6 +21,6 @@ func main() {
 
 	config.Load()
 
-	log.Println("Omnibox Cmd server up.      Version: " + version)
-	log.Fatal(server.Run())
+	log.Println("Omni-cmd server up.      Version: " + version)
+	log.Fatal(server.Start())
 }
