@@ -1,4 +1,4 @@
-FROM golang:alpine AS BUILD_IMAGE
+FROM golang:latest AS BUILD_IMAGE
 
 WORKDIR /tmp/app
 
@@ -21,8 +21,9 @@ RUN apk add ca-certificates
 
 FROM scratch
 
-# Copy certificates
+# Copy certificates and timezone.
 COPY --from=BUILD_IMAGE /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=BUILD_IMAGE /usr/share/zoneinfo /usr/share/zoneinfo
 # Copy binary
 COPY --from=BUILD_IMAGE /tmp/app/omni-cmd /omni-cmd
 
