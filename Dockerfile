@@ -16,7 +16,7 @@ RUN go install -v ./...
 # Cgo allows to use inline C code in Go sources, Cgo links your application dynamically to libc, even if you don't use any inline C
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o omni-cmd -ldflags="-s -w" ./cmd/omnicmd/...
 # -ldflags to ignore debug information for smaller binary
-RUN apk add ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates
 
 
 FROM scratch
