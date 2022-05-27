@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/qiyihuang/omni-cmd/internal/config"
+	"github.com/qiyihuang/omni-cmd/config"
 )
 
 // search the query using configured search engine.
@@ -18,7 +18,7 @@ func search(params []string, w http.ResponseWriter, r *http.Request) {
 
 	query := strings.Join(params, " ")
 	searchURL := baseURL + url.QueryEscape(query)
-	http.Redirect(w, r, searchURL, 301)
+	http.Redirect(w, r, searchURL, http.StatusMovedPermanently)
 }
 
 // handleUser handles the case when user want to go to specific user profile
@@ -26,20 +26,20 @@ func search(params []string, w http.ResponseWriter, r *http.Request) {
 func handleUser(arg string, qc config.Query, w http.ResponseWriter, r *http.Request) {
 	username := arg[1:] // arg[0] is "@"
 	rdURL := qc.URL + url.QueryEscape(username)
-	http.Redirect(w, r, rdURL, 301)
+	http.Redirect(w, r, rdURL, http.StatusMovedPermanently)
 }
 
 // handleSubDir handles case when user want to go to sub url (e.g. GitHub repo)
 func handleSubURL(subURL string, qc config.Query, w http.ResponseWriter, r *http.Request) {
 	rdURL := qc.URL + subURL
-	http.Redirect(w, r, rdURL, 301)
+	http.Redirect(w, r, rdURL, http.StatusMovedPermanently)
 }
 
 // handleSearch search in the command website.
 func handleSearch(params []string, qc config.Query, w http.ResponseWriter, r *http.Request) {
 	query := strings.Join(params, " ")
 	rdURL := qc.URL + qc.SearchStr + url.QueryEscape(query)
-	http.Redirect(w, r, rdURL, 301)
+	http.Redirect(w, r, rdURL, http.StatusMovedPermanently)
 }
 
 // Handle redirects the browser to url according to query passed.
@@ -57,7 +57,7 @@ func Handle(params []string, w http.ResponseWriter, r *http.Request) {
 
 	cmdParams := params[1:]
 	if len(cmdParams) == 0 {
-		http.Redirect(w, r, queryConfig.URL, 301)
+		http.Redirect(w, r, queryConfig.URL, http.StatusMovedPermanently)
 		return
 	}
 
