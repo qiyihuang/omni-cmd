@@ -38,8 +38,8 @@ func handleSubURL(subURL string, qc config.Query, w http.ResponseWriter, r *http
 // handleSearch search in the command website.
 func handleSearch(params []string, qc config.Query, w http.ResponseWriter, r *http.Request) {
 	query := strings.Join(params, " ")
-	rdURL := qc.URL + qc.SearchStr + url.QueryEscape(query)
-	http.Redirect(w, r, rdURL, http.StatusMovedPermanently)
+	redirectURL := qc.SearchURL + url.QueryEscape(query)
+	http.Redirect(w, r, redirectURL, http.StatusMovedPermanently)
 }
 
 // Handle redirects the browser to url according to query passed.

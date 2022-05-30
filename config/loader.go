@@ -15,7 +15,7 @@ type config struct {
 type Query struct {
 	Cmd       string `yaml:"cmd"`
 	URL       string `yaml:"url"`
-	SearchStr string `yaml:"search_str"`
+	SearchURL string `yaml:"search_url"`
 }
 
 // QueryConfig represents the config used in query package.
