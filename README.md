@@ -26,7 +26,7 @@ SEARCH_ENGINE_URL={ search query string for your preferred search engine }
 
 ## Deployment
 
-Deploy in container. Dockerfile is provided to build image. Or pull [public image](https://hub.docker.com/repository/docker/qiyihuang/omni-cmd) on docker hub. Or use go compiler to build binary.
+Deploy in container (Build from Dockerfile or pull the pre-build image) or use go compiler to build binary.
 
 ### Docker command example
 

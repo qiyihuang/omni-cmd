@@ -11,9 +11,9 @@ type Timer struct {
 }
 
 func StartTimer(name string) Timer {
-	return Timer{name: name, start: time.Now().UnixMilli()}
+	return Timer{name: name, start: time.Now().UnixNano()}
 }
 
 func (t Timer) End() {
-	log.Println(t.name, "took", time.Now().UnixMilli()-t.start, "ms to complete.")
+	log.Println(t.name, "took", time.Now().UnixNano()-t.start, "ns to complete.")
 }

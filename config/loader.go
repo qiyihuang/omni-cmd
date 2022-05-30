@@ -15,7 +15,7 @@ type config struct {
 type Query struct {
 	Cmd       string `yaml:"cmd"`
 	URL       string `yaml:"url"`
-	SearchStr string `yaml:"search_str"`
+	SearchURL string `yaml:"search_url"`
 }
 
 // QueryConfig represents the config used in query package.
@@ -38,7 +38,7 @@ func loadQueryConfig(cf *os.File) {
 // Load loads all the configs used to run the program.
 func Load() {
 	wd, _ := os.Getwd()
-	cf, err := os.Open(wd + "../config/config.yml")
+	cf, err := os.Open(wd + "/../config/config.yml")
 	if err != nil {
 		log.Fatal("Cannot find config file.")
 	}
