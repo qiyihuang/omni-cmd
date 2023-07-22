@@ -40,9 +40,9 @@ docker run -d \
 qiyihuang/omni-cmd:latest
 ```
 
-## Feature
+## Browser setting
 
-TBD
+Add a search engine with the url: "https://yoururl/saerch?cmd=$s"
 
 ## Author
 
